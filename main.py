@@ -20,6 +20,7 @@ class Node:
         if not other:
             return
         other.prev = self
+    # Makes sure next and prev relates symmetrically
 
     @prev.setter
     def prev(self, other):
@@ -29,6 +30,7 @@ class Node:
         if not other:
             return
         other.next = self
+    # Makes sure next and prev relates symmetrically
 
 
 class LinkedList:
