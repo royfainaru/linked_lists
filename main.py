@@ -1,3 +1,6 @@
+import multiprocessing
+
+
 class Node:
     def __init__(self, value):
         self.value = value
@@ -61,6 +64,9 @@ class LinkedList:
     def __bool__(self):
         return bool(len(self))
 
+    def __iter__(self):
+        return LLIterator(self)
+
     def _get_node(self, i):
         if i < len(self) / 2:
             n0 = self.first
@@ -109,3 +115,18 @@ class LinkedList:
         self.last.next = other.first
         self.last = other.last
         self._len += len(other)
+
+
+class LLIterator:
+    def __init__(self, l):
+        self.n = l[0]
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if not self.n:
+            raise StopIteration
+        value = self.n.value
+        self.n = self.n.next
+        return value
